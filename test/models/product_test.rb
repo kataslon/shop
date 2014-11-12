@@ -89,5 +89,25 @@ class ProductTest < ActiveSupport::TestCase
   	             product.errors[:title]
 
   end
+
+  def desc_product(description)
+    Product.new(title:       "My Book Title",
+              description: description,
+              price:        1,
+              image_url:    ruby.jpg)
+  end
+  
+  test "description length" do
+     #строим цикл проверки с итератором увеличения длины строки от 1 до 10
+    desc_product.description = q% {i}
+    assert desc_product(description).invalid?
+    #проверка строки длиной 1 символ
+    #start cycle
+    until length desc_product.description << ?i < 9 do
+
+      assert desc_product(description).invalid?
+    end
+  end
+
 end
 
