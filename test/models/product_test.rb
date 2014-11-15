@@ -97,14 +97,15 @@ class ProductTest < ActiveSupport::TestCase
               image_url:    ruby.jpg)
   end
   
-  test "description length" do
+ test "description length" do
      #строим цикл проверки с итератором увеличения длины строки от 1 до 10
-    desc_product.description = q% {i}
+    desc_product.description = %q{i}
+    puts desc_product.description
     assert desc_product(description).invalid?
     #проверка строки длиной 1 символ
     #start cycle
-    until length desc_product.description << ?i < 9 do
-
+    until desc_product.description.length < 6 do
+      desc_product.description=desk_product.description<<?i
       assert desc_product(description).invalid?
     end
   end
