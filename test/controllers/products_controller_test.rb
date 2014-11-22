@@ -9,13 +9,6 @@ class ProductsControllerTest < ActionController::TestCase
         image_url:   'lorem.jpg',
         price:       19.95
       }
-#      @update = {
-#        title:       'Lorem Ipsum',
-#        description: 'Wibbles are fun!',
-#        image_url:   'lorem.jpg',
-#        price:       19.95
-#    }
-
   end
 
   test "should get index" do
@@ -58,5 +51,12 @@ class ProductsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to products_path
+  end
+  test 'should get table' do
+      get :index
+      assert_response :success
+      assert_select '#columns #side a', minimum: 4
+      assert_select '.list_description', minimum: 3
+      assert_select 'dt', 'Programming Ruby 1.9'
   end
 end
